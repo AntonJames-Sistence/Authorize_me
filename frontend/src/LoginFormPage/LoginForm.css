@@ -1,0 +1,40 @@
+.errors {
+    color: red;
+    
+}
+
+h2 {
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+#login-form {
+    background: linear-gradient(to right, #e07978, #7cd180, #d8de97, #eedaba, #eab2a1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #99a5a7;
+    height: 200px;
+    width: 300px;
+    position: relative;
+    border: 2px solid black;
+}
+
+#login-button{
+    align-self: center;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 20px;
+}
+#login-button:hover {
+    cursor: pointer;
+    color: red;
+    background-color: aqua;
+}
+
+#signid-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

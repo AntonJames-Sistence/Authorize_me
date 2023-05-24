@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
   before_action :snake_case_params, :attach_authenticity_token
 
   def test
-    debugger
+    # debugger
     if params.has_key?(:login)
       login!(User.first)
     elsif params.has_key?(:logout)
