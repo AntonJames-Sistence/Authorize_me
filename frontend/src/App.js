@@ -1,8 +1,8 @@
-import LoginFormPage from './components/LoginFormPage/LoginFormPage.jsx'
+import LoginForm from './components/LoginFormModal/LoginForm.jsx'
 import React from 'react';
 import { Route, Switch} from 'react-router-dom';
-import SignupFormPage from './components/SignupFormPage/SignupFormPage.jsx';
-import Navigation from './components/Navigation/Navigation.jsx';
+import SignupFormPage from './components/SignupFormModal/SignupForm.jsx';
+import Navigation from './components/Navigation/index.js';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/login">
-            <LoginFormPage />
+            <LoginForm />
           </Route>
         </Switch>
     </>

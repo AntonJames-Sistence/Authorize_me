@@ -4,9 +4,9 @@ import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
 import './SignupForm.css'
 
-const SignupFormPage = () => {
+const SignupForm = () => {
     const dispatch = useDispatch();
-    const sessionUser = useSelector(state => state.session.user); // select stte for current user in state
+    // const sessionUser = useSelector(state => state.session.user); // select state for current user in state
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -15,7 +15,7 @@ const SignupFormPage = () => {
     const [errors, setErrors] = useState([]);
 
 
-    if (sessionUser) return <Redirect to="/" />;
+    // if (sessionUser) return <Redirect to="/" />;
 
 
     const handleSubmit = (e) => {
@@ -98,4 +98,4 @@ const SignupFormPage = () => {
     )
 }
 
-export default SignupFormPage;
+export default SignupForm;
