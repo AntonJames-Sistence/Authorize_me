@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../store/session';
-import * as sessionActions from '../store/session';
+import * as sessionActions from '../../store/session';
 import './LoginForm.css';
 
 

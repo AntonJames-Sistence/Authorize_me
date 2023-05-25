@@ -1,4 +1,4 @@
-import LoginFormPage from "./LoginFormPage/LoginFormPage";
+import LoginFormPage from './components/LoginFormPage/LoginFormPage.jsx'
 import React from 'react';
 import { Route, Switch} from 'react-router-dom';
 
