@@ -1,4 +1,4 @@
-import csrfFetch, { storeCSRFToken } from "./csrf";
+import csrfFetch from "./csrf";
 
 // actions
 const SET_CURRENT_USER = 'session/SET_CURRENT_USER'; 
@@ -17,8 +17,8 @@ export const removeCurrentUser = () => {
     }
 };
 
-// thunks
-//login
+//================================== Thunk actions ======================================
+
 export const login = (user) => async (dispatch) => {
     // const {credential, password} = user;
     const res = await csrfFetch('/api/session', {
@@ -31,7 +31,18 @@ export const login = (user) => async (dispatch) => {
     dispatch(setCurrentUser(data.user));
 }
 
-//restore session
+//================================== restore session logic ======================================
+export function storeCSRFToken(response) {
+    const csrfToken = response.headers.get("X-CSRF-Token");
+    if (csrfToken) sessionStorage.setItem("X-CSRF-Token", csrfToken);
+}
+  
+export async function restoreCSRF() {
+    const response = await csrfFetch("/api/session");
+    storeCSRFToken(response);
+    return response;
+}
+
 export const restoreSession = () => async dispatch => {
     const res = await csrfFetch('/api/session');
     storeCSRFToken(res);
@@ -39,7 +50,7 @@ export const restoreSession = () => async dispatch => {
 
     storeCurrentUser(data.user);
     dispatch(setCurrentUser(data.user));
-    // return res;
+    return res;
 }
 
 const storeCurrentUser = (user) => {
@@ -50,7 +61,10 @@ const storeCurrentUser = (user) => {
     }
 }
 
-const initialState = {user: null};
+// grabbing initial state from storage if it is there
+const initialState = {
+    user: JSON.parse(sessionStorage.getItem("currentUser"))
+};
 // session reducer
 const sessionReducer = (state = initialState, action) => {
     Object.freeze(state);
