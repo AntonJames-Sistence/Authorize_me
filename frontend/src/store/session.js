@@ -31,6 +31,16 @@ export const login = (user) => async (dispatch) => {
     dispatch(setCurrentUser(data.user));
 }
 
+export const logout = () => async (dispatch) => {
+    // const {credential, password} = user;
+    await csrfFetch('/api/session', {
+        method: 'DELETE'
+    });
+    
+    storeCurrentUser();
+    dispatch(removeCurrentUser());
+}
+
 export const signup = (regInfo) => async (dispatch) => {
     // const {username, email, password} = regInfo;
     const res = await csrfFetch('api/users', {
