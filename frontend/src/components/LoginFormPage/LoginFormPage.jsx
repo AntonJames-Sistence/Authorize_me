@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
@@ -38,33 +38,32 @@ const LoginFormPage = () => {
 
     return (
         <>
-        <div id='signid-container'>
+        <div id='sign-container'>
         <form id='login-form' onSubmit={handleSubmit}>
         <h2>Login</h2>
+        <ul>
+            {errors.map(error => <li key={error} className='errors'>{error}</li>)}
+        </ul>
             <div>
-                <label htmlFor='username'>Username:</label>
+                <p>Username:</p>
                     <input
                     id='username'
                     type="text"
                     value={credential}
                     onChange={e => {setCredential(e.target.value)}}
                     required
-                    ></input>
+                    />
             </div>
             <div>
-                <label>Password:
+                <p>Password:</p>
                     <input
                     type="password"
                     value={password}
                     onChange={e => {setPassword(e.target.value)}}
                     required
-                    ></input>   
-                </label>
+                    />
             </div>
-            <button id='login-button' type="submit">Log In</button>
-            <ul>
-                {errors.map(error => <li key={error} className='errors'>{error}</li>)}
-            </ul>
+            <button id='login-signup-button' type="submit">Log In</button>
         </form>
         </div>
         </>

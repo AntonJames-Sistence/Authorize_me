@@ -2,8 +2,7 @@ import csrfFetch from "./csrf";
 
 // actions
 const SET_CURRENT_USER = 'session/SET_CURRENT_USER'; 
-const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER'; 
-const STORE_CURRENT_USER = 'users/STORE_CURRENT_USER';
+const REMOVE_CURRENT_USER = 'session/REMOVE_CURRENT_USER';
 
 export const setCurrentUser = (user) => {
     return {
@@ -17,13 +16,6 @@ export const removeCurrentUser = () => {
         type: REMOVE_CURRENT_USER
     }
 };
-
-// export const storeCurrentUser = (userInfo) => {
-//     return {
-//         type: STORE_CURRENT_USER,
-//         userInfo
-//     }
-// }
 
 //================================== Thunk actions ======================================
 
@@ -40,13 +32,14 @@ export const login = (user) => async (dispatch) => {
 }
 
 export const signup = (regInfo) => async (dispatch) => {
+    // const {username, email, password} = regInfo;
     const res = await csrfFetch('api/users', {
         method: 'POST',
         body: JSON.stringify(regInfo)
     });
     const data = await res.json();
 
-    storeCurrentUser(data.user);
+    storeCurrentUser(data.user); // I've changed user to newUser to be simantic with signup page
     dispatch(setCurrentUser(data.user));
 }
 
